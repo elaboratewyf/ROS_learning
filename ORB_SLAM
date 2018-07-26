@@ -1,0 +1,83 @@
+1. 
+	each time change basgrc do: 
+
+	source ~/.bashrc
+	
+2. after install ROS, do all the things in beginner tutorial, like mkdir catkin_ws and intialize rosdep
+
+3. when we try to 'git clone' ORB_SLAM2 on the internet, it always fail to compile, but before we delete the package file
+   we should deletet the folder build and devel(under catkin_ws) as well, after delete thoes two, run catkin_make in catkin_ws. 
+
+4. 
+	every packages have different way to compile,
+	instead of catkin_make, there are cmake
+
+	mkdir build
+	cd build 
+	cmake ..
+
+	then install
+
+	cd build 
+	sudo make install
+
+and there is third way to compil, just like the one we use in ORB_SLAM2
+chod +x build.sh
+
+3. ORB_SLAM2
+
+1.	first doing '2. Prerequisites'
+	we can ignore 'C++11 or C++0x Compiler'
+	we can skip the openCV install
+	we can skip DBoW2 and g2o
+	we can skip ‘binding’
+
+2.	about the Pangolin:
+	!!!!!!!must git clone under ‘home’ not catkin_ws
+	we need to install the dependencies and recommand dependences in Pangolin, for brand new ubuntu, we need to install them before the git clone（the ‘building’） 
+
+3.	about the Eigen3
+	click the link, download from the very top 'The latest stable release is Eigen 3.3.5. Get it here: tar.bz2, tar.gz, zip. Changelog.' (click zip), double click the zip and extract it in folder 'home'
+	then the install instruction is in side of the zip, unzip it at the folder 'home' 
+
+Do:
+	 cd eigen (tab)
+	 mkdir build_dir
+	 cd build_dir
+	 cmake ..
+	 sudo make install
+	 
+	 (the above three line just an other wat to compile a package, the ORB_SLAM2 need this kind of compile, but this method just one of the methods of compile package, and 
+		just the same as the
+    mkdir build
+    cd build 
+    cmake ..
+
+    then install
+
+    cd build 
+    sudo make install  
+    or
+    catkin_make
+	)
+
+5. cannot find packages.
+	we follow the exactly step on how to install ros on ubuntu. but we dont know that:
+	1.	ubuntu 14 -> indigo
+	2. 	ubuntu 16 -> kinetic
+	3.  ODROID 	  -> need ubuntu mate 
+	4.  when downloading image files for odroid, search ubuntu mate image odroid and search the lasted version,https://odroid.in/ubuntu_16.04lts/
+	
+6. add these line in bashrc
+
+	source /opt/ros/kinetic/setup.bash
+	source ~/catkin_ws/devel/setup.bash	
+	export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:~/catkin_ws/src/ORB_SLAM2/Examples/ROS
+	then doing 
+	source ~/.bashrc
+
+7.	when compileing the ORB_SLAM2, it take a loooooooot of time, sometime, it stuck on 59% or some, 
+	but as long as it was not showing error, then just give it more times.
+
+8. 	doing the '3. Building ORB_SLAM2 library and example' doesnt work, we use the package file from Rene, we save the file in folder'files for ROS study' 
+	and do the command in '3. Building ORB_SLAM2 library and example' 
